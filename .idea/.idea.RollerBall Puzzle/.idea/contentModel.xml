@@ -9,7 +9,6 @@
           <e p="InputController.cs" t="Include" />
         </e>
         <e p="Scripts" t="Include">
-          <e p="BallGenerator.cs" t="Include" />
           <e p="BallsSpawner.cs" t="Include" />
           <e p="camera2.cs" t="Include" />
           <e p="CameraController.cs" t="Include" />

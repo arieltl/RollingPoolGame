@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class BallsSpawner : MonoBehaviour
 {
-    BallGenerator generator;
+    public GameObject ball;
     float radius = 0.5f;
     void Start()
     {
-        generator = gameObject.GetComponent<BallGenerator>();
         GenerateTriangle(1,1,Vector2.zero);
     }
 
@@ -18,7 +17,7 @@ public class BallsSpawner : MonoBehaviour
         if (layer < 6)
         {
             Debug.Log(new Vector2(layer, count));
-            generator.GenerateBall(positon);
+            GenerateBall(positon);
 
             if (count == layer)
             {
@@ -33,6 +32,12 @@ public class BallsSpawner : MonoBehaviour
                 GenerateTriangle(layer, count + 1, nextPosition);
             }
         }
+    }
+    
+    void GenerateBall(Vector2 Positon)
+    {
+        var ballInst = Instantiate(ball, new Vector3(Positon.x, 0.5f, Positon.y), Quaternion.identity);
+        ballInst.transform.parent = transform;
     }
 }
 
