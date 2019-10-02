@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         var velocity = rb.velocity;
-        var angle = Mathf.Atan2(velocity.x, velocity.z) * Mathf.Rad2Deg;
+        var angle = 90 - Mathf.Atan2(velocity.z, velocity.x) * Mathf.Rad2Deg;
         braking = movement.y < 0;
         float yInput = movement.y;
         if (braking)

@@ -45,7 +45,8 @@ public class CameraController : MonoBehaviour
         // Calculate movement direction
         var velocity = rb.velocity;
         if (velocity.magnitude > 0.1f) {
-            var angle = Mathf.Atan2(velocity.x, velocity.z) * Mathf.Rad2Deg;
+            var angle = 90 - Mathf.Atan2(velocity.z, velocity.x) * Mathf.Rad2Deg;
+            Debug.Log(angle);
 
             // Calculate input offset
             var xInput = Mathf.LerpUnclamped(0, maxInputOffset.x, inputOffset.x);
