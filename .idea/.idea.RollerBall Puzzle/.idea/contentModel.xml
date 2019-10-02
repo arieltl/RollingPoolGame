@@ -12,6 +12,7 @@
           <e p="BallsSpawner.cs" t="Include" />
           <e p="camera2.cs" t="Include" />
           <e p="CameraController.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
           <e p="player2.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />

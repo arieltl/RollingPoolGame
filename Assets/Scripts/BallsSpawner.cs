@@ -23,7 +23,7 @@ public class BallsSpawner : MonoBehaviour
             {
                 var firstBallOnLayerX = positon.x - (2 * radius * (layer - 1));
                 var nextPosition = new Vector2(firstBallOnLayerX - radius,
-                    positon.y - Mathf.Sin(60 * Mathf.Deg2Rad * radius * 2 ));
+                    positon.y + Mathf.Sin(60 * Mathf.Deg2Rad * radius * 2 ));
                 GenerateTriangle(layer + 1, 1, nextPosition);
             }
             else
