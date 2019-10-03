@@ -12,23 +12,23 @@ public class BallsSpawner : MonoBehaviour
         GenerateTriangle(1,1,Vector2.zero);
     }
 
-    void GenerateTriangle(int layer, int count,Vector2 positon)
+    void GenerateTriangle(int layer, int count,Vector2 position)
     {
         if (layer < 6)
         {
             Debug.Log(new Vector2(layer, count));
-            GenerateBall(positon);
+            GenerateBall(position);
 
             if (count == layer)
             {
-                var firstBallOnLayerX = positon.x - (2 * radius * (layer - 1));
+                var firstBallOnLayerX = position.x - (2 * radius * (layer - 1));
                 var nextPosition = new Vector2(firstBallOnLayerX - radius,
-                    positon.y + Mathf.Sin(60 * Mathf.Deg2Rad * radius * 2 ));
+                    position.y + Mathf.Sin(60 * Mathf.Deg2Rad * radius * 2 ));
                 GenerateTriangle(layer + 1, 1, nextPosition);
             }
             else
             {
-                var nextPosition = new Vector2(positon.x + 2 * radius, positon.y);
+                var nextPosition = new Vector2(position.x + 2 * radius, position.y);
                 GenerateTriangle(layer, count + 1, nextPosition);
             }
         }
