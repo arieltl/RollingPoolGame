@@ -32,6 +32,14 @@ public class InputController : IInputActionCollection
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Impulse"",
+                    ""type"": ""Button"",
+                    ""id"": ""eed084b2-b5c9-4027-8e2b-f0f9ebf5d5af"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -166,6 +174,28 @@ public class InputController : IInputActionCollection
                     ""action"": ""Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37fa0658-7e28-42f0-808b-de3933742c50"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""kb + mouse"",
+                    ""action"": ""Impulse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""156e75f0-95ac-43de-a169-8f10c1dabb65"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Impulse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -204,6 +234,7 @@ public class InputController : IInputActionCollection
         m_Gameplay = asset.GetActionMap("Gameplay");
         m_Gameplay_Movement = m_Gameplay.GetAction("Movement");
         m_Gameplay_Camera = m_Gameplay.GetAction("Camera");
+        m_Gameplay_Impulse = m_Gameplay.GetAction("Impulse");
     }
 
     ~InputController()
@@ -255,12 +286,14 @@ public class InputController : IInputActionCollection
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_Movement;
     private readonly InputAction m_Gameplay_Camera;
+    private readonly InputAction m_Gameplay_Impulse;
     public struct GameplayActions
     {
         private InputController m_Wrapper;
         public GameplayActions(InputController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputAction @Camera => m_Wrapper.m_Gameplay_Camera;
+        public InputAction @Impulse => m_Wrapper.m_Gameplay_Impulse;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -276,6 +309,9 @@ public class InputController : IInputActionCollection
                 Camera.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCamera;
                 Camera.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCamera;
                 Camera.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCamera;
+                Impulse.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnImpulse;
+                Impulse.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnImpulse;
+                Impulse.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnImpulse;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -286,6 +322,9 @@ public class InputController : IInputActionCollection
                 Camera.started += instance.OnCamera;
                 Camera.performed += instance.OnCamera;
                 Camera.canceled += instance.OnCamera;
+                Impulse.started += instance.OnImpulse;
+                Impulse.performed += instance.OnImpulse;
+                Impulse.canceled += instance.OnImpulse;
             }
         }
     }
@@ -312,5 +351,6 @@ public class InputController : IInputActionCollection
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
+        void OnImpulse(InputAction.CallbackContext context);
     }
 }

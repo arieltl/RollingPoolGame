@@ -46,8 +46,7 @@ public class CameraController : MonoBehaviour
         var velocity = rb.velocity;
         if (velocity.magnitude > 0.1f) {
             var angle = 90 - Mathf.Atan2(velocity.z, velocity.x) * Mathf.Rad2Deg;
-            Debug.Log(angle);
-
+            
             // Calculate input offset
             var xInput = Mathf.LerpUnclamped(0, maxInputOffset.x, inputOffset.x);
             var yInput = Mathf.LerpUnclamped(0, maxInputOffset.y, inputOffset.y);
