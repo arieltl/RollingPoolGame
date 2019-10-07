@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    List<GameObject> gameBalls = new List<GameObject>();
-
+    List<BallControlller> gameBalls = new List<BallControlller>();
+    
     int score;
 
     public int Score
@@ -17,5 +17,11 @@ public class GameManager : MonoBehaviour
             score = value;
             Debug.Log(score);
         }
+    }
+
+    public void AddBall(BallControlller ball)
+    {
+        gameBalls.Add(ball);
+        Debug.Log(gameBalls.Count);
     }
 }

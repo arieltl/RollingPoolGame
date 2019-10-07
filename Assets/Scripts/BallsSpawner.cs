@@ -16,7 +16,7 @@ public class BallsSpawner : MonoBehaviour
     {
         if (layer < 6)
         {
-            Debug.Log(new Vector2(layer, count));
+            //Debug.Log(new Vector2(layer, count));
             GenerateBall(position);
 
             if (count == layer)

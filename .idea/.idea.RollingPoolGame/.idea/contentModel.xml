@@ -11,10 +11,14 @@
           <e p="InputController.cs" t="Include" />
         </e>
         <e p="Scripts" t="Include">
+          <e p="BallControlller.cs" t="Include" />
           <e p="BallsSpawner.cs" t="Include" />
-          <e p="CameraController.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
-          <e p="PlayerController.cs" t="Include" />
+          <e p="Player" t="Include">
+            <e p="CameraController.cs" t="Include" />
+            <e p="PlayerLogicController.cs" t="Include" />
+            <e p="PlayerMovementController.cs" t="Include" />
+          </e>
           <e p="PocketScript.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
           <e p="camera2.cs" t="Include" />

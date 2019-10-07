@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
     Quaternion camOffset;
     InputController controls;
 
-    PlayerController playerController;
+    PlayerMovementController playerMovementController;
     Rigidbody rb;
     Vector3 baseOffset;
     
@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
     {
         baseOffset = transform.position - player.transform.position;
         rb = player.GetComponent<Rigidbody>();
-        playerController = player.GetComponent<PlayerController>();
+        playerMovementController = player.GetComponent<PlayerMovementController>();
     }
 
     void LateUpdate()

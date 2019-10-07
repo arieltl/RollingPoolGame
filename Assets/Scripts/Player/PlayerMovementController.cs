@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.HDPipeline;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 
-
-public class PlayerController : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour
 {
 
     
     public float speed = 3;
     public float impulseSpeed = 10;
-
+    
     bool applyImpulse;
     bool braking;
     InputController controls;
@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
         controls.Gameplay.Movement.performed += ctx => movement = ctx.ReadValue<Vector2>();
         controls.Gameplay.Movement.canceled += ctx => movement = Vector2.zero;
         controls.Gameplay.Impulse.performed += ctx => applyImpulse = true;
-
     }
 
 
@@ -65,7 +64,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(move);
 
 
-            rb.angularDrag = (velocity.magnitude > 0.15f) ? 0.05f : 15;
+            rb.angularDrag = (velocity.magnitude > 0.15f && moving) ? 0.05f : 15;
             moving = (velocity.magnitude > 0.15f);
             lastAngle = angle;
         }
@@ -80,11 +79,25 @@ public class PlayerController : MonoBehaviour
 
     void OnEnable()
     {
-        controls.Gameplay.Enable();
+        ToggleControl(true);
     }
 
     void OnDisable()
     {
-        controls.Gameplay.Disable();
+        ToggleControl(false);
     }
+
+    public void ToggleControl(bool enable)
+    {
+        if (enable)
+        {
+            controls.Gameplay.Enable();
+        }
+        else
+        {
+            controls.Gameplay.Disable();
+        }
+        
+    }
+    
 }
